@@ -2,6 +2,17 @@
 <module name="Checker">
 	<module name="SuppressionCommentFilter" />
 	<module name="TreeWalker">
+		<!-- Configure java doc checks -->
+		<module name="JavadocType">
+			<property name="scope" value="public" />
+		</module>
+		<module name="JavadocMethod">
+			<property name="scope" value="public" />
+		</module>
+		<module name="JavadocVariable">
+			<property name="scope" value="public" />
+		</module>
+		<!-- End of java doc check configurations -->
 		<module name="FileContentsHolder" />
 		<module name="CyclomaticComplexity">
 			<property name="severity" value="warning" />
