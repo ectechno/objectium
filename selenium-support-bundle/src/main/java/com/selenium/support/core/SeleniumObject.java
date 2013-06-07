@@ -33,9 +33,9 @@ public class SeleniumObject implements WebElement {
         driver = BrowserDriverProvider.getInstance().getBrowserDriver();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#click()
-     */
+   /**
+    * {@inheritDoc}
+    */
     public final void click() {
         getElement().click();
     }
@@ -44,8 +44,8 @@ public class SeleniumObject implements WebElement {
         return driver.findElement(identifier);
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#submit()
+    /**
+     * {@inheritDoc}
      */
     public final void submit() {
         getElement().submit();
