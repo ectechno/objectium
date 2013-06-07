@@ -8,7 +8,6 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>selenium-object-framework</groupId>
 	<artifactId>selenium-support-bundle</artifactId>
 	<version>${project.parent.version}</version>
 
