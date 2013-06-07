@@ -16,14 +16,8 @@ import org.openqa.selenium.WebElement;
  */
 
 public class SeleniumObject implements WebElement {
-    /**
-     * Uniquely Identifies the object.
-     */
-    private By identifier;
 
-    /**
-     * Webdriver that will be used within the object.
-     */
+    private By identifier;
     private WebDriver driver;
 
     /**
@@ -33,9 +27,9 @@ public class SeleniumObject implements WebElement {
         driver = BrowserDriverProvider.getInstance().getBrowserDriver();
     }
 
-   /**
-    * {@inheritDoc}
-    */
+    /**
+     * {@inheritDoc}
+     */
     public final void click() {
         getElement().click();
     }
@@ -51,92 +45,92 @@ public class SeleniumObject implements WebElement {
         getElement().submit();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#sendKeys(java.lang.CharSequence[])
+    /**
+     * {@inheritDoc}
      */
     public final void sendKeys(CharSequence... charSequences) {
         getElement().sendKeys(charSequences);
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#clear()
+    /**
+     * {@inheritDoc}
      */
     public final void clear() {
         getElement().clear();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#getTagName()
+    /**
+     * {@inheritDoc}
      */
     public final String getTagName() {
         return getElement().getTagName();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#getAttribute(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final String getAttribute(String s) {
         return getElement().getAttribute(s);
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#isSelected()
+    /**
+     * {@inheritDoc}
      */
     public final boolean isSelected() {
         return getElement().isSelected();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#isEnabled()
+    /**
+     * {@inheritDoc}
      */
     public final boolean isEnabled() {
         return getElement().isEnabled();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#getText()
+    /**
+     * {@inheritDoc}
      */
     public final String getText() {
         return getElement().getText();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#findElements(org.openqa.selenium.By)
+    /**
+     * {@inheritDoc}
      */
     public final List<WebElement> findElements(By by) {
         return getElement().findElements(by);
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#findElement(org.openqa.selenium.By)
+    /**
+     * {@inheritDoc}
      */
     public final WebElement findElement(By by) {
         return getElement().findElement(by);
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#isDisplayed()
+    /**
+     * {@inheritDoc}
      */
     public final boolean isDisplayed() {
         return getElement().isDisplayed();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#getLocation()
+    /**
+     * {@inheritDoc}
      */
     public final Point getLocation() {
         return getElement().getLocation();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#getSize()
+    /**
+     * {@inheritDoc}
      */
     public final Dimension getSize() {
         return getElement().getSize();
     }
 
-    /* (non-Javadoc)
-     * @see org.openqa.selenium.WebElement#getCssValue(java.lang.String)
+    /**
+     * {@inheritDoc}
      */
     public final String getCssValue(String s) {
         return getElement().getCssValue(s);
