@@ -20,8 +20,7 @@ public class SeleniumObject implements WebElement {
      * Uniquely Identifies the object.
      */
     private By identifier;
-    
-    
+
     /**
      * Webdriver that will be used within the object.
      */
@@ -37,11 +36,10 @@ public class SeleniumObject implements WebElement {
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#click()
      */
-    public void click() {
+    public final void click() {
         getElement().click();
     }
 
-    
     private WebElement getElement() {
         return driver.findElement(identifier);
     }
@@ -49,105 +47,106 @@ public class SeleniumObject implements WebElement {
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#submit()
      */
-    public void submit() {
+    public final void submit() {
         getElement().submit();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#sendKeys(java.lang.CharSequence[])
      */
-    public void sendKeys(CharSequence... charSequences) {
+    public final void sendKeys(CharSequence... charSequences) {
         getElement().sendKeys(charSequences);
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#clear()
      */
-    public void clear() {
+    public final void clear() {
         getElement().clear();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#getTagName()
      */
-    public String getTagName() {
+    public final String getTagName() {
         return getElement().getTagName();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#getAttribute(java.lang.String)
      */
-    public String getAttribute(String s) {
+    public final String getAttribute(String s) {
         return getElement().getAttribute(s);
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#isSelected()
      */
-    public boolean isSelected() {
+    public final boolean isSelected() {
         return getElement().isSelected();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#isEnabled()
      */
-    public boolean isEnabled() {
+    public final boolean isEnabled() {
         return getElement().isEnabled();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#getText()
      */
-    public String getText() {
+    public final String getText() {
         return getElement().getText();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#findElements(org.openqa.selenium.By)
      */
-    public List<WebElement> findElements(By by) {
+    public final List<WebElement> findElements(By by) {
         return getElement().findElements(by);
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#findElement(org.openqa.selenium.By)
      */
-    public WebElement findElement(By by) {
+    public final WebElement findElement(By by) {
         return getElement().findElement(by);
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#isDisplayed()
      */
-    public boolean isDisplayed() {
+    public final boolean isDisplayed() {
         return getElement().isDisplayed();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#getLocation()
      */
-    public Point getLocation() {
+    public final Point getLocation() {
         return getElement().getLocation();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#getSize()
      */
-    public Dimension getSize() {
+    public final Dimension getSize() {
         return getElement().getSize();
     }
 
     /* (non-Javadoc)
      * @see org.openqa.selenium.WebElement#getCssValue(java.lang.String)
      */
-    public String getCssValue(String s) {
+    public final String getCssValue(String s) {
         return getElement().getCssValue(s);
     }
 
     /**
+     * Get the identifier of the object
      * @return the identifier for the object as a By object
      */
-    public By getIdentifier() {
+    public final By getIdentifier() {
         return identifier;
     }
 
@@ -156,7 +155,7 @@ public class SeleniumObject implements WebElement {
      * @param identifier - Identifier of the object as a By Object
      * 
      */
-    public void setIdentifier(By identifier) {
+    public final void setIdentifier(By identifier) {
         this.identifier = identifier;
     }
 }
