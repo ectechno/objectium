@@ -9,8 +9,6 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>selenium-support-bundle</artifactId>
-	<version>${project.parent.version}</version>
-
 
 	<dependencies>
 		<dependency>
@@ -30,75 +28,5 @@
 			<artifactId>selenium-ie-driver</artifactId>
 		</dependency>
 	</dependencies>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<encoding>utf-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jxr-maven-plugin</artifactId>
-				<version>2.0-beta-1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>emma-maven-plugin</artifactId>
-				<version>1.0-alpha-3</version>
-				<inherited>true</inherited>
-				<configuration />
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>surefire-report-maven-plugin</artifactId>
-				<version>2.0-beta-1</version>
-				<inherited>true</inherited>
-			</plugin>
-			<!-- PMD (static analysis) -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.0.1</version>
-				<configuration>
-					<targetJdk>${compileSource}</targetJdk>
-					<rulesets>
-						<ruleset>../toolbox/configurations/pmd.xml</ruleset>
-					</rulesets>
-					<format>xml</format>
-					<linkXref>true</linkXref>
-					<sourceEncoding>utf-8</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-				</configuration>
-			</plugin>
-			<!-- Checkstyle (formatting) -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.10</version>
-				<configuration>
-					<configLocation>../toolbox/configurations/checkstyle.xml</configLocation>
-					<encoding>utf-8</encoding>
-				</configuration>
-			</plugin>
-			<!-- FindBugs (static analysis) -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.5.2</version>
-				<configuration>
-					<sourceEncoding>utf-8</sourceEncoding>
-				</configuration>
-			</plugin>
-			<!-- Java NCC (complexity) -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>javancss-maven-plugin</artifactId>
-				<version>2.0</version>
-			</plugin>
-		</plugins>
-	</reporting>
+
 </project>
