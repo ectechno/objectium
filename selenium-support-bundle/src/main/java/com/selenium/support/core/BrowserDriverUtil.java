@@ -18,7 +18,8 @@ public final class BrowserDriverUtil {
 
     /**
      * Wait for certain 'expectedConditon' to be statisfied or TIMEOUT time to exceed
-     * @param <T> expectedCondition - an instance of ExpectedCondition
+     * @param <T> - Type of the 'expectedCondition'
+     * @param expectedCondition - an instance of ExpectedCondition
      * @return an object of type T, this is normaly what's expected in the ExpectedConditon
      * 
      */
@@ -28,7 +29,8 @@ public final class BrowserDriverUtil {
 
     /**
      * Wait for certain 'expectedConditon' to be statisfied or 'timeout' time to exceed
-     * @param <T> expectedCondition - an instance of ExpectedCondition
+     * @param <T> - Type of the 'expectedCondition'
+     * @param expectedCondition - an instance of ExpectedCondition
      * @param timeout - defines how long should we wait for the ExpectedCondition in seconds
      * @return an object of type T, this is normaly what's expected in the ExpectedConditon
      */
