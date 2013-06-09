@@ -39,7 +39,7 @@ import org.openqa.selenium.WebElement;
  * SeleniumObject Class.
  */
 
-public class SeleniumObject implements WebElement {
+public abstract class SeleniumObject implements WebElement {
 
     private By identifier;
     private WebDriver driver;
@@ -52,9 +52,10 @@ public class SeleniumObject implements WebElement {
     }
 
     /**
+     * Click on the element.
      * {@inheritDoc}
      */
-    public final void click() {
+    public void click() {
         getElement().click();
     }
 
@@ -63,108 +64,128 @@ public class SeleniumObject implements WebElement {
     }
 
     /**
+     * Submit the parent form of the element.
      * {@inheritDoc}
      */
-    public final void submit() {
+    public void submit() {
         getElement().submit();
     }
 
     /**
+     * Type the charSequence (String) on the element.
      * {@inheritDoc}
      */
-    public final void sendKeys(CharSequence... charSequences) {
+    public void sendKeys(CharSequence... charSequences) {
         getElement().sendKeys(charSequences);
     }
 
     /**
+     * Clear the element content.
      * {@inheritDoc}
      */
-    public final void clear() {
+    public void clear() {
         getElement().clear();
     }
 
     /**
+     * @return name of the element's HTML tag.
      * {@inheritDoc}
      */
-    public final String getTagName() {
+    public String getTagName() {
         return getElement().getTagName();
     }
 
     /**
+     * @return the attribute s of the element.
      * {@inheritDoc}
      */
-    public final String getAttribute(String s) {
+    public String getAttribute(String s) {
         return getElement().getAttribute(s);
     }
 
     /**
+     * @return whether the element isSelected
      * {@inheritDoc}
      */
-    public final boolean isSelected() {
+    public boolean isSelected() {
         return getElement().isSelected();
     }
 
     /**
+     * @return Whether the element isSelected.
      * {@inheritDoc}
      */
-    public final boolean isEnabled() {
+    public boolean isEnabled() {
         return getElement().isEnabled();
     }
 
     /**
+     * @return the text content of the element.
      * {@inheritDoc}
      */
-    public final String getText() {
+    public String getText() {
         return getElement().getText();
     }
 
     /**
+     * Find a list of elements by using the given identifier.
+     * @param by - identifier of the elements needed to be found
+     * @return a list of elements that matches the identifier 
      * {@inheritDoc}
      */
-    public final List<WebElement> findElements(By by) {
+    public List<WebElement> findElements(By by) {
         return getElement().findElements(by);
     }
 
     /**
+     * Find a single element by using the given identifier.
+     * @param by - identifier of the element needed to be found
+     * @return element that matches the identifier 
+     * 
      * {@inheritDoc}
      */
-    public final WebElement findElement(By by) {
+    public WebElement findElement(By by) {
         return getElement().findElement(by);
     }
 
     /**
+     * @return the displayed status of the element.
      * {@inheritDoc}
      */
-    public final boolean isDisplayed() {
+    public boolean isDisplayed() {
         return getElement().isDisplayed();
     }
 
     /**
+     * @return the location of the element in the screen as a Point.
      * {@inheritDoc}
      */
-    public final Point getLocation() {
+    public Point getLocation() {
         return getElement().getLocation();
     }
 
     /**
+     * @return the dimentions of the element.
      * {@inheritDoc}
      */
-    public final Dimension getSize() {
+    public Dimension getSize() {
         return getElement().getSize();
     }
 
     /**
-     * {@inheritDoc}
+     * @return the CSS value of the css attribute s that is set within the element's styles
+     * @param s - the css attribute of the element
+     * * {@inheritDoc}
      */
-    public final String getCssValue(String s) {
+    public String getCssValue(String s) {
         return getElement().getCssValue(s);
     }
 
     /**
-     * Get the identifier of the object
+     * Get the identifier of the object.
      * @return the identifier for the object as a By object
      */
-    public final By getIdentifier() {
+    public By getIdentifier() {
         return identifier;
     }
 
@@ -173,7 +194,7 @@ public class SeleniumObject implements WebElement {
      * @param identifier - Identifier of the object as a By Object
      * 
      */
-    public final void setIdentifier(By identifier) {
+    public void setIdentifier(By identifier) {
         this.identifier = identifier;
     }
 }
