@@ -35,11 +35,15 @@ public class SetupContinuesIntegrationEnvironmentFeatureContinuesIntegrationEnvi
   @Order(1)
   @Named("Then we should be able to access it via the URL")
   public void _thenWeShouldBeAbleToAccessItViaTheURL() {
-    boolean _isAvailable = this.jenkins.isAvailable();
-    boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isAvailable), true);
-    Assert.assertTrue("\nExpected jenkins.isAvailable() should be true but"
-     + "\n     jenkins.isAvailable() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isAvailable)).toString()
-     + "\n     jenkins is " + new org.hamcrest.StringDescription().appendValue(this.jenkins).toString() + "\n", _should_be);
-    
+    try {
+      boolean _isAvailable = this.jenkins.isAvailable();
+      boolean _should_be = Should.<Boolean>should_be(Boolean.valueOf(_isAvailable), true);
+      Assert.assertTrue("\nExpected jenkins.isAvailable() should be true but"
+       + "\n     jenkins.isAvailable() is " + new org.hamcrest.StringDescription().appendValue(Boolean.valueOf(_isAvailable)).toString()
+       + "\n     jenkins is " + new org.hamcrest.StringDescription().appendValue(this.jenkins).toString() + "\n", _should_be);
+      
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

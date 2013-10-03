@@ -50,6 +50,7 @@ public class JenkinsWrapper {
     private static final int HTTP_REPONSE_REDIRECTIONS = 399;
     private static final int HTTP_RESPONSE_OK = 200;
     private static final int TIME_OUT = 10000;
+
     private URL jenkinsUrl = null;
     private Document jenkinsDoc = null;
     private DocumentBuilder builder = null;
@@ -94,31 +95,24 @@ public class JenkinsWrapper {
 
     /**
      * @return - whether the Jenkins server is up and running
+     * @throws IOException 
      */
-    public boolean isAvailable() {
-        HttpURLConnection connection = null;
-        try {
-            connection = getJenkinsConnection();
-            int responseCode = connection.getResponseCode();
-            return (HTTP_RESPONSE_OK <= responseCode && responseCode <= HTTP_REPONSE_REDIRECTIONS);
-        } catch (IOException e) {
-            return false;
-        } finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
-        }
+    public boolean isAvailable() throws IOException {
+        return isResponseOK(connectToJenkinsServer());
     }
 
-    private HttpURLConnection getJenkinsConnection() throws IOException {
+    private boolean isResponseOK(int responseCode) {
+        return HTTP_RESPONSE_OK <= responseCode && responseCode <= HTTP_REPONSE_REDIRECTIONS;
+    }
+
+    private int connectToJenkinsServer() throws IOException {
         HttpURLConnection connection = (HttpURLConnection) jenkinsUrl.openConnection();
         connection.setConnectTimeout(TIME_OUT);
         connection.setReadTimeout(TIME_OUT);
         connection.setRequestMethod("HEAD");
-        return connection;
+        return connection.getResponseCode();
     }
 
-   
     /**
      * @param jobName - name of the Jenkins Job we want to check
      * @return - whether the jenkins job is configured or not, returns true if configured
@@ -129,19 +123,37 @@ public class JenkinsWrapper {
     public boolean isJobConfigured(String jobName) throws SAXException, IOException, InterruptedException {
         initializeJenkinsXmlApi();
         NodeList jobList = jenkinsDoc.getElementsByTagName("job");
-        for (int i = 0; i < jobList.getLength(); i++) {
-            Node jobNode = jobList.item(i);
-            if (jobNode.getNodeType() != Node.ELEMENT_NODE)
-                continue;
+        return isJobNameInJobList(jobName, jobList);
+    }
 
-            Element jobElement = (Element) jobNode;
-            NodeList nameList = jobElement.getElementsByTagName("name");
-            for (int j = 0; j < nameList.getLength(); j++) {
-                Element nameElement = (Element) nameList.item(j);
-                if (nameElement.getChildNodes().item(0).getNodeValue().equals(jobName))
-                    return true;
-            }
+    private boolean isJobNameInJobList(String jobName, NodeList jobList) {
+        boolean isJobNameFound = false;
+        for (int i = 0; validateLoopItem(jobList, isJobNameFound, i); i++) {
+            Node jobNode = jobList.item(i);
+            isJobNameFound = isJobNodeAnXMLElement(jobNode) ? isJobNameInJobNode(jobName, jobNode) : isJobNameFound;
         }
-        return false;
+        return isJobNameFound;
+    }
+
+    private boolean validateLoopItem(NodeList jobList, boolean isJobNameFound, int i) {
+        return (i < jobList.getLength()) && (isJobNameFound == false);
+    }
+
+    private boolean isJobNodeAnXMLElement(Node jobNode) {
+        return jobNode.getNodeType() == Node.ELEMENT_NODE;
+    }
+
+    private boolean isJobNameInJobNode(String jobName, Node jobNode) {
+        boolean isJobNameFound = false;
+        NodeList nameList = ((Element) jobNode).getElementsByTagName("name");
+        for (int j = 0; validateLoopItem(nameList, isJobNameFound, j); j++) {
+            Element nameElement = (Element) nameList.item(j);
+            isJobNameFound = isJobNameCorrect(jobName, nameElement);
+        }
+        return isJobNameFound;
+    }
+
+    private boolean isJobNameCorrect(String jobName, Element nameElement) {
+        return nameElement.getChildNodes().item(0).getNodeValue().equals(jobName);
     }
 }
