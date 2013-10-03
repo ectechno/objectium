@@ -36,6 +36,8 @@ public final class BrowserDriverProvider {
     private static BrowserDriverProvider provider = null;
 
     private WebDriver driver;
+    
+    private String unused;
 
     private BrowserDriverProvider() {
 
