@@ -13,18 +13,6 @@
 	<rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace">
 		<priority>3</priority>
 	</rule>
-	<rule ref="rulesets/java/braces.xml/IfStmtsMustUseBraces">
-		<priority>3</priority>
-	</rule>
-	<rule ref="rulesets/java/braces.xml/WhileLoopsMustUseBraces">
-		<priority>3</priority>
-	</rule>
-	<rule ref="rulesets/java/braces.xml/IfElseStmtsMustUseBraces">
-		<priority>3</priority>
-	</rule>
-	<rule ref="rulesets/java/braces.xml/ForLoopsMustUseBraces">
-		<priority>3</priority>
-	</rule>
 	<rule ref="rulesets/java/coupling.xml/LooseCoupling">
 		<priority>3</priority>
 	</rule>
