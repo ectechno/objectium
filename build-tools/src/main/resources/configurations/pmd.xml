@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
 	<description>
- 	 This ruleset checks my code for bad stuff
+ 	 Rule set for Objectium Project
   </description>
 
 	<rule ref="rulesets/java/logging-java.xml/SystemPrintln">

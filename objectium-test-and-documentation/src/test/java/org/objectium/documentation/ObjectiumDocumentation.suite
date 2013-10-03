@@ -1,0 +1,33 @@
+package org.objectium.documentation
+
+import org.objectium.features.*
+import org.objectium.specs.*
+#Objectium Documentation
+
+Welcome to **Objectium** and opersource selenium based framework that allows testers to create mantain Object Repository for selenium.
+
+##Overview
+
+##Getting Started
+
+##Downloading objectium
+##Installing Objectium
+##Deploying the Demo Site
+##Running the Demo
+##Creating your first Object Repository
+##Writing your first test with the Object Repository 
+
+##Using Selenium Support Bundle project with your tests
+##Selenium Support Bundle Documentation
+##Writing Tests with Selenium Support Bundle
+
+##Contribute to the Project Help Us to Make it Better
+##Downloading project source and setting up Git
+##Configuring your local dev enviornment
+##Setting up and configuring eclipse
+- "Configure Eclipse With Code Quality Plugins"
+
+
+
+
+

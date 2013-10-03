@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Configure Eclipse With Code Quality Plugins</title>
+<meta name="description" content="">
+<meta name="author" content="Jnario">
+
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="../../../css/custom.css">
+<link rel="stylesheet" href="../../../css/prettify.css">
+<script type="text/javascript" src="../../../js/prettify.js"></script>
+<script type="text/javascript" src="../../../js/lang-jnario.js"></script>
+<script type="text/javascript" src="../../../js/jquery.js"></script>
+<script type="text/javascript" src="../../../js/bootstrap-tab.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+	<div class="container">
+		<div class="tabbable">
+			<div class="content">
+				<div class="page-header pending">
+					<h1>Configure Eclipse With Code Quality Plugins</h1>
+					  <ul class="nav nav-tabs pull-right">
+					    <li class="active"><a href="#spec" data-toggle="tab">Spec</a></li>
+						<li><a href="#source" data-toggle="tab">Source</a></li>
+					  </ul>
+				</div>
+				<div class="row">
+					<div class="span12">
+						  <div class="tab-content">
+							  	<div class="tab-pane active" id="spec">
+<p>As a PO I want to configure check style, PMD, Code cleanup and Code formatter in eclipse IDE and create documentation for it so that other contributors of the project can follow. It's important to ensure that all code committed to Objectium Project follows a pre-defined standard and adheer to certain rules.</p><p>It is expected from contributers to configure their Eclipse environment with the instruction given below</p><p>Also, we assume that you have downloaded and installed Eclipse IDE from <a href="http://www.eclipse.org/Downloads">eclispe.org</a>.</p>
+<div><h3 class="scenario pending"  id="Background">Background:
+</h3>
+<ul>
+</ul>
+</div>
+<div><h3 class="scenario notrun"  id="Scenario_Ensure_the_build_tools_project_exists_and_the_files_required_to_configure_Eclipse_is_available">Scenario: Ensure the build-tools project exists and the files required to configure Eclipse is available
+</h3>
+<ul>
+<li><span class="step notrun"><p>Given <code>"build-tools"</code> Project is available</p></span>
+</li>
+<li><span class="step notrun"><p>Then the files <code>"checkstyle.xml"</code>, <code>"pmd.xml"</code>, <code>"code_cleanup.xml"</code> and <code>"code_formatter.xml"</code> should be available in the <code>"src/main/resources/configurations"</code> folder witin the build-tools project root.</p></span>
+</li>
+</ul>
+</div>
+<div><h3 class="scenario notrun"  id="Scenario_Configure_Eclipse_with_checkstyle">Scenario: Configure Eclipse with checkstyle
+</h3>
+<ul>
+<li><span class="step notrun"><p>When <code>"checkstyle.xml"</code> is available in <code>"build-tools"</code> project <code>"src/main/resources/configurations"</code> path</p></span>
+</li>
+<li><span class="step pending"><p>Then we can configure the checkstyle plugin in Eclipse IDE</p><pre>- Open your Eclipse IDE
+- Goto Help-&gt;Install new software
+- The &quot;Install&quot; dialog will appear.
+- In the &quot;Work With&quot; input box enter &quot;http://eclipse-cs.sourceforge.net/update&quot; and press ENTER
+- Select &quot;Checkstyle&quot; from the presented list and press Next
+- Installation process will prompt you when it require confirmation; just follow the process</pre></span>
+</li>
+</ul>
+</div>
+							</div>
+						    <div class="tab-pane" id="source">
+						    	<h3>R002_S003.feature</h3>
+						    	<p>
+<pre class="prettyprint lang-feature linenums">
+package org.objectium.features
+
+import java.io.File
+import org.objectium.features.*
+
+Feature: Configure Eclipse With Code Quality Plugins
+
+As a PO I want to configure check style, PMD, Code cleanup and Code formatter in eclipse IDE and create documentation for it so that other contributors of the project can follow. It's important to ensure that all code committed to Objectium Project follows a pre-defined standard and adheer to certain rules.
+
+It is expected from contributers to configure their Eclipse environment with the instruction given below
+
+Also, we assume that you have downloaded and installed Eclipse IDE from [eclispe.org](http://www.eclipse.org/Downloads).
+
+Background:
+  var String currentPath = new File(&quot;.&quot;).getAbsolutePath();
+  var String localPath = &quot;/objectium-test-and-documentation/.&quot;;
+  var String rootFolderPath = currentPath.replace(localPath,&quot;&quot;);
+  var String projectFolder;
+  var String resourcesFolder;
+Scenario: Ensure the build-tools project exists and the files required to configure Eclipse is available
+  
+  Given &quot;build-tools&quot; Project is available
+    projectFolder = rootFolderPath+&quot;/&quot;+args.first.toString;
+    new File(rootFolderPath).exists =&gt; true
+  Then the files &quot;checkstyle.xml&quot;, &quot;pmd.xml&quot;, &quot;code_cleanup.xml&quot; and &quot;code_formatter.xml&quot; should be available in the &quot;src/main/resources/configurations&quot; folder   witin the build-tools project root.
+    resourcesFolder = projectFolder+&quot;/&quot;+args.fifth.toString;
+    new File(resourcesFolder).exists should be true
+    new File(resourcesFolder+&quot;/&quot;+args.first.toString).exists should be true
+    new File(resourcesFolder+&quot;/&quot;+args.second.toString).exists should be true
+    new File(resourcesFolder+&quot;/&quot;+args.third.toString).exists should be true
+    new File(resourcesFolder+&quot;/&quot;+args.forth.toString).exists should be true
+
+Scenario: Configure Eclipse with checkstyle
+  
+  When &quot;checkstyle.xml&quot; is available in &quot;build-tools&quot; project &quot;src/main/resources/configurations&quot; path
+    projectFolder = rootFolderPath+&quot;/&quot;+args.second.toString;
+    resourcesFolder = projectFolder+&quot;/&quot;+args.third.toString;
+    new File(resourcesFolder+&quot;/&quot;+args.first.toString).exists should be true
+    
+  Then we can configure the checkstyle plugin in Eclipse IDE
+    '''
+      - Open your Eclipse IDE
+      - Goto Help-&gt;Install new software
+      - The &quot;Install&quot; dialog will appear.
+      - In the &quot;Work With&quot; input box enter &quot;http://eclipse-cs.sourceforge.net/update&quot; and press ENTER
+      - Select &quot;Checkstyle&quot; from the presented list and press Next
+      - Installation process will prompt you when it require confirmation; just follow the process
+    '''
+</pre>
+						    </p></div>
+						  </div>
+					</div> 
+				</div> <!-- /row -->
+			</div> <!-- /content -->
+		</div> <!-- /tabbable -->
+		<footer>
+			<p><small>Generated by <a href="http://www.jnario.org">Jnario</a>.</small></p>
+		</footer>
+	</div> <!-- /container -->
+
+</body>
+</html>

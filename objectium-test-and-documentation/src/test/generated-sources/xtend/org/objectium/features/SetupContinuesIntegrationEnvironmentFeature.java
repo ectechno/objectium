@@ -1,0 +1,16 @@
+package org.objectium.features;
+
+import org.jnario.runner.Contains;
+import org.jnario.runner.FeatureRunner;
+import org.jnario.runner.Named;
+import org.junit.runner.RunWith;
+import org.objectium.features.SetupContinuesIntegrationEnvironmentFeatureContinuesIntegrationEnvironmentIsUpAndRunning;
+import org.objectium.features.SetupContinuesIntegrationEnvironmentFeatureContinuesIntegrationJobForMainApplicatonBuildIsAvailable;
+import org.objectium.features.SetupContinuesIntegrationEnvironmentFeatureContinuesIntegratoinJobForTestAndDeploymentIsAvailable;
+
+@Contains({ SetupContinuesIntegrationEnvironmentFeatureContinuesIntegrationEnvironmentIsUpAndRunning.class, SetupContinuesIntegrationEnvironmentFeatureContinuesIntegrationJobForMainApplicatonBuildIsAvailable.class, SetupContinuesIntegrationEnvironmentFeatureContinuesIntegratoinJobForTestAndDeploymentIsAvailable.class })
+@Named("Setup Continues Integration Environment")
+@RunWith(FeatureRunner.class)
+@SuppressWarnings("all")
+public class SetupContinuesIntegrationEnvironmentFeature {
+}
