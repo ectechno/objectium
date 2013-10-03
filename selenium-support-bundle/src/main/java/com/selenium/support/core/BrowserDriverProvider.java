@@ -50,9 +50,9 @@ public final class BrowserDriverProvider {
     public static BrowserDriverProvider getInstance() {
         if (provider == null) {
             synchronized (BrowserDriverProvider.class) {
-                if (provider == null) {
+                if (provider == null) 
                     provider = new BrowserDriverProvider();
-                }
+                
             }
         }
 
