@@ -65,7 +65,10 @@ public final class BrowserDriverProvider {
         return driver;
     }
 
-    
+    /**
+     * Set a new driver instance for the BrowserDriverProvider. 
+     * @param driver - Current webdriver instance
+     */
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
