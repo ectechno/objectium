@@ -36,8 +36,6 @@ public final class BrowserDriverProvider {
     private static BrowserDriverProvider provider = null;
 
     private WebDriver driver;
-    
-    private String unused;
 
     private BrowserDriverProvider() {
 
@@ -50,9 +48,9 @@ public final class BrowserDriverProvider {
     public static BrowserDriverProvider getInstance() {
         if (provider == null) {
             synchronized (BrowserDriverProvider.class) {
-                if (provider == null) 
+                if (provider == null) {
                     provider = new BrowserDriverProvider();
-                
+                }
             }
         }
 
