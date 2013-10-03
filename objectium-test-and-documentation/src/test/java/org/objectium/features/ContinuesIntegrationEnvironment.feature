@@ -23,7 +23,6 @@ Scenario: Continues integration environment is up and running
 Scenario: Continues Integration Job for Main Applicaton Build is available
 	When CI enviornment is up and running on "http://localhost:8080"
 		jenkins.setUrl(args.first.toString);
-		jenkins.isAvailable() should be true;
 	Then There should be a job named "Main_Application_Build"
 		jenkins.isJobConfigured(args.first.toString) should be true;
 

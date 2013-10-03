@@ -1,5 +1,6 @@
 package org.objectium.features;
 
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
@@ -13,8 +14,12 @@ import org.objectium.test.jenkins.JenkinsWrapper;
 public class SetupContinuesIntegrationEnvironmentFeatureWeWillConsiderTeFollowingScenariosToEnsureContinuesIntegrationEnvironmentIsSetupCorrectly extends SetupContinuesIntegrationEnvironmentFeature {
   JenkinsWrapper jenkins = new Function0<JenkinsWrapper>() {
     public JenkinsWrapper apply() {
-      JenkinsWrapper _jenkinsWrapper = new JenkinsWrapper();
-      return _jenkinsWrapper;
+      try {
+        JenkinsWrapper _jenkinsWrapper = new JenkinsWrapper();
+        return _jenkinsWrapper;
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
+      }
     }
   }.apply();
 }
