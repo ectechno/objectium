@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 Suren Rodrigo, 99X Technology (Pvt) Ltd.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+ */
+
 package org.objectium.test.jenkins;
 
 import java.io.IOException;
@@ -22,6 +46,9 @@ import org.xml.sax.SAXException;
  */
 public class JenkinsWrapper {
 
+    private static final int THREAD_SLEEP_TIME = 5000;
+    private static final int HTTP_REPONSE_REDIRECTIONS = 399;
+    private static final int HTTP_RESPONSE_OK = 200;
     private static final int TIME_OUT = 10000;
     private URL jenkinsUrl = null;
     private Document jenkinsDoc = null;
@@ -30,7 +57,7 @@ public class JenkinsWrapper {
 
     /**
      * @throws ParserConfigurationException
-     * Main Constructor; This will always be initilized as a concreat class, we won't be using this for the Objectium project operations.
+     * Main Constructor; This will always be initialized as a concrete class, we won't be using this for the Objectium project operations.
      */
     public JenkinsWrapper() throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -59,7 +86,7 @@ public class JenkinsWrapper {
      */
     private void initializeJenkinsXmlApi() throws SAXException, IOException, InterruptedException {
         if (jenkinsDoc == null) {
-            Thread.sleep(5000);
+            Thread.sleep(THREAD_SLEEP_TIME);
             jenkinsDoc = builder.parse(jenkinsUrlString);
             jenkinsDoc.getDocumentElement().normalize();
         }
@@ -73,7 +100,7 @@ public class JenkinsWrapper {
         try {
             connection = getJenkinsConnection();
             int responseCode = connection.getResponseCode();
-            return (200 <= responseCode && responseCode <= 399);
+            return (HTTP_RESPONSE_OK <= responseCode && responseCode <= HTTP_REPONSE_REDIRECTIONS);
         } catch (IOException e) {
             return false;
         } finally {
@@ -91,12 +118,13 @@ public class JenkinsWrapper {
         return connection;
     }
 
+   
     /**
-     * @param jobName - Name of the job that we need to check if configured
-     * @return
-     * @throws SAXException
-     * @throws IOException
-     * @throws InterruptedException
+     * @param jobName - name of the Jenkins Job we want to check
+     * @return - whether the jenkins job is configured or not, returns true if configured
+     * @throws SAXException - XML sax parser exceptions
+     * @throws IOException - XML File IO Exceptions
+     * @throws InterruptedException - Thread exceptions
      */
     public boolean isJobConfigured(String jobName) throws SAXException, IOException, InterruptedException {
         initializeJenkinsXmlApi();
