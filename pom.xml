@@ -19,12 +19,6 @@
 				<module>selenium-support-bundle</module>
 			</modules>
 		</profile>
-		<profile>
-			<id>objectium-test</id>
-			<modules>
-				<module>objectium-test-and-documentation</module>
-			</modules>
-		</profile>
 	</profiles>
 	<dependencyManagement>
 		<dependencies>
