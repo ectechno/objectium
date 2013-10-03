@@ -2,8 +2,6 @@ package org.objectium.test.jenkins;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -61,7 +59,7 @@ public class JenkinsWrapper {
      */
     private void initializeJenkinsXmlApi() throws SAXException, IOException, InterruptedException {
         if (jenkinsDoc == null) {
-            Thread.sleep(5000); 
+            Thread.sleep(5000);
             jenkinsDoc = builder.parse(jenkinsUrlString);
             jenkinsDoc.getDocumentElement().normalize();
         }
@@ -93,7 +91,6 @@ public class JenkinsWrapper {
         return connection;
     }
 
- 
     /**
      * @param jobName - Name of the job that we need to check if configured
      * @return
